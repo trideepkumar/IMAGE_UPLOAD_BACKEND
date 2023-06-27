@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const fileupload = require('express-fileupload');
+
 const user = require('./router/user')
 
 
@@ -17,6 +19,16 @@ const corsOptions = {
 
 require('dotenv').config();
 const app = express();
+
+// app.use(fileupload({ useTempFiles: true, tempFileDir: '/temp/' }));
+
+const uploadDir = '/path/to/existing/directory';
+
+// Enable file uploads
+app.use(fileupload({
+  createParentPath: true,
+  tempFileDir: uploadDir,
+}));
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));

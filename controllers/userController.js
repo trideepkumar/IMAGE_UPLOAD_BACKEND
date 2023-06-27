@@ -2,6 +2,7 @@ const User = require('../model/user')
 
 const uploadImage = async (req, res) => {
 console.log('hi')
+console.log(req.files);
     if (!req.file) {
       return res.status(400).json({ error: 'No image file provided' });
     }
